@@ -4,6 +4,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -40,9 +41,25 @@
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NA5-3U-4qb" id="z1W-nv-qDj">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kPV-Zt-DNq">
+                                            <rect key="frame" x="33" y="6" width="53" height="32"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kPV-Zt-DNq" firstAttribute="centerY" secondItem="z1W-nv-qDj" secondAttribute="centerY" id="2BN-32-Yw1"/>
+                                        <constraint firstItem="kPV-Zt-DNq" firstAttribute="leading" secondItem="z1W-nv-qDj" secondAttribute="leadingMargin" constant="25" id="nER-xd-uL6"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="Phs-v8-JpU" kind="show" identifier="ShowAssignment" id="u9r-P2-fMX"/>
+                                    <outlet property="title" destination="kPV-Zt-DNq" id="vkt-1E-Qrr"/>
+                                    <segue destination="Phs-v8-JpU" kind="show" identifier="ShowAssignment" id="u9r-P2-fMX">
+                                        <segue key="commit" inheritsFrom="parent" id="B6V-kk-Bml"/>
+                                        <segue key="preview" inheritsFrom="commit" id="AQE-pi-oaF"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -108,7 +125,7 @@
             </objects>
             <point key="canvasLocation" x="2063" y="-378"/>
         </scene>
-        <!--Grade View Controller-->
+        <!--Grade-->
         <scene sceneID="FTQ-c9-hAI">
             <objects>
                 <viewController id="eQL-Jg-g3f" customClass="GradeViewController" customModule="StudentSistant" customModuleProvider="target" sceneMemberID="viewController">
@@ -119,25 +136,55 @@
                     <view key="view" contentMode="scaleToFill" id="w6R-NQ-p7O">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="xGh-6F-YSx">
+                                <rect key="frame" x="38" y="238" width="323" height="246"/>
+                                <subviews>
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gSy-ag-bO3">
+                                        <rect key="frame" x="0.0" y="0.0" width="323" height="30"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F6T-52-rOt">
+                                        <rect key="frame" x="0.0" y="30" width="320" height="216"/>
+                                    </pickerView>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="gSy-ag-bO3" firstAttribute="leading" secondItem="xGh-6F-YSx" secondAttribute="leading" id="Kao-3l-N30"/>
+                                    <constraint firstAttribute="trailing" secondItem="gSy-ag-bO3" secondAttribute="trailing" id="SRO-H0-0zA"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="xGh-6F-YSx" firstAttribute="centerY" secondItem="w6R-NQ-p7O" secondAttribute="centerY" id="3oN-hQ-EN8"/>
+                            <constraint firstItem="xGh-6F-YSx" firstAttribute="centerX" secondItem="w6R-NQ-p7O" secondAttribute="centerX" id="9ZI-fq-HC7"/>
+                            <constraint firstItem="xGh-6F-YSx" firstAttribute="leading" secondItem="w6R-NQ-p7O" secondAttribute="leadingMargin" constant="15" id="GMF-vp-bfa"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="xGh-6F-YSx" secondAttribute="trailing" constant="222" id="dbw-3T-Xd7"/>
+                        </constraints>
                     </view>
+                    <navigationItem key="navigationItem" title="Grade" id="DjL-h6-QhI">
+                        <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="r2j-Lk-C5o">
+                            <connections>
+                                <action selector="cancel:" destination="eQL-Jg-g3f" id="GGz-Rb-0sy"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="done" id="c2q-2Q-S9N">
+                            <connections>
+                                <segue destination="FjT-6S-c4T" kind="unwind" unwindAction="unwindToGradeList:" id="xPM-ie-czq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="done" destination="c2q-2Q-S9N" id="U7h-7o-leR"/>
+                        <outlet property="pickerView" destination="F6T-52-rOt" id="xQn-zx-CTN"/>
+                        <outlet property="textField" destination="gSy-ag-bO3" id="rbN-MV-nhC"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGj-8V-sgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="FjT-6S-c4T" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="2150" y="314"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="3LR-ho-314">
-            <objects>
-                <navigationController id="3Nl-hr-aNf" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="hGi-tF-rs5">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="jOP-o2-sPa" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1745" y="963"/>
+            <point key="canvasLocation" x="2063" y="314"/>
         </scene>
         <!--Table View Controller-->
         <scene sceneID="BXp-uG-1Pm">
@@ -184,8 +231,9 @@
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="courseName" destination="pPX-4o-l4r" id="rni-Ko-tUD"/>
+                                    <outlet property="gradeReceived" destination="SAM-Q8-2mY" id="ixl-cj-mmF"/>
                                     <outlet property="levelLabel" destination="Izg-lv-s3q" id="Q9g-aw-7io"/>
-                                    <segue destination="eQL-Jg-g3f" kind="show" identifier="ShowDetail" id="Jn7-yh-Z8F"/>
+                                    <segue destination="eQL-Jg-g3f" kind="show" identifier="ShowDetail" id="WoH-0p-UeD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -195,7 +243,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="dWe-63-iG6">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="MxH-xi-plG"/>
+                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="MxH-xi-plG">
+                            <connections>
+                                <segue destination="V0M-dZ-gU7" kind="presentation" identifier="AddDetail" id="ydn-rn-vLn"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="MxH-xi-plG" id="18X-II-mx5"/>
@@ -244,5 +296,27 @@
             </objects>
             <point key="canvasLocation" x="713" y="314"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="c00-yp-QYV">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="V0M-dZ-gU7" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Jm7-SA-zF3">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="eQL-Jg-g3f" kind="relationship" relationship="rootViewController" id="djr-K4-Ld1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VIs-Js-XgG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1838" y="1073"/>
+        </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="WoH-0p-UeD"/>
+        <segue reference="u9r-P2-fMX"/>
+    </inferredMetricsTieBreakers>
 </document>
