@@ -7,10 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BE7AC4E31D0F295600D55176 /* DailyHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DB1D0F295600D55176 /* DailyHWViewController.swift */; };
+		BE7AC4E41D0F295600D55176 /* GPATableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DC1D0F295600D55176 /* GPATableViewController.swift */; };
+		BE7AC4E51D0F295600D55176 /* GPAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DD1D0F295600D55176 /* GPAViewController.swift */; };
+		BE7AC4E61D0F295600D55176 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DE1D0F295600D55176 /* Grade.swift */; };
+		BE7AC4E71D0F295600D55176 /* GradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DF1D0F295600D55176 /* GradeTableViewCell.swift */; };
+		BE7AC4E81D0F295600D55176 /* GradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4E01D0F295600D55176 /* GradeViewController.swift */; };
+		BE7AC4E91D0F295600D55176 /* HWList.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4E11D0F295600D55176 /* HWList.swift */; };
+		BE7AC4EA1D0F295600D55176 /* HWListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4E21D0F295600D55176 /* HWListCell.swift */; };
+		BE7AC4ED1D0F295F00D55176 /* Assignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4EB1D0F295F00D55176 /* Assignment.swift */; };
+		BE7AC4F11D0F345D00D55176 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BE7AC4EF1D0F345D00D55176 /* Main.storyboard */; };
 		BEB8708B1CC8840D003D9F04 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB8708A1CC8840D003D9F04 /* AppDelegate.swift */; };
-		BEB8708D1CC8840D003D9F04 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB8708C1CC8840D003D9F04 /* FirstViewController.swift */; };
-		BEB8708F1CC8840D003D9F04 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB8708E1CC8840D003D9F04 /* SecondViewController.swift */; };
-		BEB870921CC8840D003D9F04 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB870901CC8840D003D9F04 /* Main.storyboard */; };
 		BEB870941CC8840D003D9F04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB870931CC8840D003D9F04 /* Assets.xcassets */; };
 		BEB870971CC8840D003D9F04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB870951CC8840D003D9F04 /* LaunchScreen.storyboard */; };
 		BEB870A21CC8840D003D9F04 /* StudentSistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB870A11CC8840D003D9F04 /* StudentSistantTests.swift */; };
@@ -27,11 +34,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		BE7AC4DB1D0F295600D55176 /* DailyHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyHWViewController.swift; sourceTree = "<group>"; };
+		BE7AC4DC1D0F295600D55176 /* GPATableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPATableViewController.swift; sourceTree = "<group>"; };
+		BE7AC4DD1D0F295600D55176 /* GPAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPAViewController.swift; sourceTree = "<group>"; };
+		BE7AC4DE1D0F295600D55176 /* Grade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
+		BE7AC4DF1D0F295600D55176 /* GradeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeTableViewCell.swift; sourceTree = "<group>"; };
+		BE7AC4E01D0F295600D55176 /* GradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeViewController.swift; sourceTree = "<group>"; };
+		BE7AC4E11D0F295600D55176 /* HWList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWList.swift; sourceTree = "<group>"; };
+		BE7AC4E21D0F295600D55176 /* HWListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HWListCell.swift; sourceTree = "<group>"; };
+		BE7AC4EB1D0F295F00D55176 /* Assignment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assignment.swift; sourceTree = "<group>"; };
+		BE7AC4F01D0F345D00D55176 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEB870871CC8840D003D9F04 /* StudentSistant.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = StudentSistant.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB8708A1CC8840D003D9F04 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		BEB8708C1CC8840D003D9F04 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		BEB8708E1CC8840D003D9F04 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		BEB870911CC8840D003D9F04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		BEB870931CC8840D003D9F04 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		BEB870961CC8840D003D9F04 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		BEB870981CC8840D003D9F04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,13 +93,20 @@
 		BEB870891CC8840D003D9F04 /* StudentSistant */ = {
 			isa = PBXGroup;
 			children = (
+				BE7AC4EB1D0F295F00D55176 /* Assignment.swift */,
+				BE7AC4DB1D0F295600D55176 /* DailyHWViewController.swift */,
+				BE7AC4DC1D0F295600D55176 /* GPATableViewController.swift */,
+				BE7AC4DD1D0F295600D55176 /* GPAViewController.swift */,
+				BE7AC4DE1D0F295600D55176 /* Grade.swift */,
+				BE7AC4DF1D0F295600D55176 /* GradeTableViewCell.swift */,
+				BE7AC4E01D0F295600D55176 /* GradeViewController.swift */,
+				BE7AC4E11D0F295600D55176 /* HWList.swift */,
+				BE7AC4E21D0F295600D55176 /* HWListCell.swift */,
 				BEB8708A1CC8840D003D9F04 /* AppDelegate.swift */,
-				BEB8708C1CC8840D003D9F04 /* FirstViewController.swift */,
-				BEB8708E1CC8840D003D9F04 /* SecondViewController.swift */,
-				BEB870901CC8840D003D9F04 /* Main.storyboard */,
 				BEB870931CC8840D003D9F04 /* Assets.xcassets */,
 				BEB870951CC8840D003D9F04 /* LaunchScreen.storyboard */,
 				BEB870981CC8840D003D9F04 /* Info.plist */,
+				BE7AC4EF1D0F345D00D55176 /* Main.storyboard */,
 			);
 			path = StudentSistant;
 			sourceTree = "<group>";
@@ -180,9 +201,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BE7AC4F11D0F345D00D55176 /* Main.storyboard in Resources */,
 				BEB870971CC8840D003D9F04 /* LaunchScreen.storyboard in Resources */,
 				BEB870941CC8840D003D9F04 /* Assets.xcassets in Resources */,
-				BEB870921CC8840D003D9F04 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -200,9 +221,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BEB8708F1CC8840D003D9F04 /* SecondViewController.swift in Sources */,
+				BE7AC4EA1D0F295600D55176 /* HWListCell.swift in Sources */,
+				BE7AC4E41D0F295600D55176 /* GPATableViewController.swift in Sources */,
+				BE7AC4E81D0F295600D55176 /* GradeViewController.swift in Sources */,
+				BE7AC4E91D0F295600D55176 /* HWList.swift in Sources */,
+				BE7AC4E51D0F295600D55176 /* GPAViewController.swift in Sources */,
 				BEB8708B1CC8840D003D9F04 /* AppDelegate.swift in Sources */,
-				BEB8708D1CC8840D003D9F04 /* FirstViewController.swift in Sources */,
+				BE7AC4E61D0F295600D55176 /* Grade.swift in Sources */,
+				BE7AC4E31D0F295600D55176 /* DailyHWViewController.swift in Sources */,
+				BE7AC4ED1D0F295F00D55176 /* Assignment.swift in Sources */,
+				BE7AC4E71D0F295600D55176 /* GradeTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -225,10 +253,10 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		BEB870901CC8840D003D9F04 /* Main.storyboard */ = {
+		BE7AC4EF1D0F345D00D55176 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				BEB870911CC8840D003D9F04 /* Base */,
+				BE7AC4F01D0F345D00D55176 /* Base */,
 			);
 			name = Main.storyboard;
 			sourceTree = "<group>";
@@ -394,6 +422,7 @@
 				BEB870A81CC8840D003D9F04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		BEB870A91CC8840D003D9F04 /* Build configuration list for PBXNativeTarget "StudentSistantTests" */ = {
 			isa = XCConfigurationList;
@@ -402,6 +431,7 @@
 				BEB870AB1CC8840D003D9F04 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
