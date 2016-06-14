@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="49e-Tb-3d3">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -24,7 +24,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HuB-VB-40B" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4" y="-38"/>
+            <point key="canvasLocation" x="-18" y="-40"/>
         </scene>
         <!--Assignments-->
         <scene sceneID="gdf-IN-dAU">
@@ -35,7 +35,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="NA5-3U-4qb" customClass="HWListCell" customModule="StudentSistant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="HWListCell" id="NA5-3U-4qb" customClass="HWListCell" customModule="StudentSistant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NA5-3U-4qb" id="z1W-nv-qDj">
@@ -55,10 +55,10 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="title" destination="kPV-Zt-DNq" id="vkt-1E-Qrr"/>
-                                    <segue destination="Phs-v8-JpU" kind="show" identifier="ShowAssignment" id="u9r-P2-fMX">
-                                        <segue key="commit" inheritsFrom="parent" id="B6V-kk-Bml"/>
-                                        <segue key="preview" inheritsFrom="commit" id="AQE-pi-oaF"/>
+                                    <outlet property="title" destination="kPV-Zt-DNq" id="WWr-bn-1fL"/>
+                                    <segue destination="Phs-v8-JpU" kind="show" identifier="ShowAssignment" id="N2z-Mn-vub">
+                                        <segue key="commit" inheritsFrom="parent" id="YFn-7P-YbU"/>
+                                        <segue key="preview" inheritsFrom="commit" id="LoT-jh-qcm"/>
                                     </segue>
                                 </connections>
                             </tableViewCell>
@@ -70,7 +70,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Assignments" id="axG-Dh-BIw"/>
                     <connections>
-                        <outlet property="navBar" destination="axG-Dh-BIw" id="EQG-i4-ygh"/>
+                        <outlet property="navBar" destination="axG-Dh-BIw" id="HyA-RG-Joh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5Qe-bW-swz" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -110,14 +110,14 @@
                     <navigationItem key="navigationItem" id="mNT-ZI-cBN">
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="gTF-6R-p6x">
                             <connections>
-                                <segue destination="ghE-rx-CO1" kind="unwind" unwindAction="unwindToHWList:" id="Njh-Tb-iav"/>
+                                <segue destination="ghE-rx-CO1" kind="unwind" unwindAction="unwindToHWList:" id="OVq-YY-W9v"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="done" destination="gTF-6R-p6x" id="GKy-ZR-p10"/>
-                        <outlet property="navBar" destination="mNT-ZI-cBN" id="in5-Re-tBG"/>
-                        <outlet property="textField" destination="wg9-4L-LAQ" id="rHy-F4-bL5"/>
+                        <outlet property="done" destination="gTF-6R-p6x" id="AMe-3b-tIf"/>
+                        <outlet property="navBar" destination="mNT-ZI-cBN" id="234-9w-IVO"/>
+                        <outlet property="textField" destination="wg9-4L-LAQ" id="82w-Nv-KQB"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gg6-fA-uQb" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -166,19 +166,19 @@
                     <navigationItem key="navigationItem" title="Grade" id="DjL-h6-QhI">
                         <barButtonItem key="leftBarButtonItem" title="Item" systemItem="cancel" id="r2j-Lk-C5o">
                             <connections>
-                                <action selector="cancel:" destination="eQL-Jg-g3f" id="GGz-Rb-0sy"/>
+                                <action selector="cancel:" destination="eQL-Jg-g3f" id="zQn-Ze-vzF"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="done" id="c2q-2Q-S9N">
                             <connections>
-                                <segue destination="FjT-6S-c4T" kind="unwind" unwindAction="unwindToGradeList:" id="xPM-ie-czq"/>
+                                <segue destination="FjT-6S-c4T" kind="unwind" unwindAction="unwindToGradeList:" id="PeR-Yv-CBu"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="done" destination="c2q-2Q-S9N" id="U7h-7o-leR"/>
-                        <outlet property="pickerView" destination="F6T-52-rOt" id="xQn-zx-CTN"/>
-                        <outlet property="textField" destination="gSy-ag-bO3" id="rbN-MV-nhC"/>
+                        <outlet property="done" destination="c2q-2Q-S9N" id="UNK-sG-ckD"/>
+                        <outlet property="pickerView" destination="F6T-52-rOt" id="9Fo-YU-1XF"/>
+                        <outlet property="textField" destination="gSy-ag-bO3" id="Ucj-hN-8A9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NGj-8V-sgF" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -195,7 +195,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="qk4-1e-BBY" customClass="GradeTableViewCell" customModule="StudentSistant" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="GradeTableViewCell" id="qk4-1e-BBY" customClass="GradeTableViewCell" customModule="StudentSistant" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="qk4-1e-BBY" id="d5p-X8-ohI">
@@ -230,10 +230,13 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="courseName" destination="pPX-4o-l4r" id="rni-Ko-tUD"/>
-                                    <outlet property="gradeReceived" destination="SAM-Q8-2mY" id="ixl-cj-mmF"/>
-                                    <outlet property="levelLabel" destination="Izg-lv-s3q" id="Q9g-aw-7io"/>
-                                    <segue destination="eQL-Jg-g3f" kind="show" identifier="ShowDetail" id="WoH-0p-UeD"/>
+                                    <outlet property="courseName" destination="pPX-4o-l4r" id="a36-Ss-ei0"/>
+                                    <outlet property="gradeReceived" destination="SAM-Q8-2mY" id="40h-pa-r4f"/>
+                                    <outlet property="levelLabel" destination="Izg-lv-s3q" id="fYI-Sb-4Se"/>
+                                    <segue destination="eQL-Jg-g3f" kind="show" identifier="ShowDetail" id="WoH-0p-UeD">
+                                        <segue key="commit" inheritsFrom="parent" id="bVJ-cJ-dWh"/>
+                                        <segue key="preview" inheritsFrom="commit" id="Ngc-96-SsY"/>
+                                    </segue>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -250,19 +253,19 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="addButton" destination="MxH-xi-plG" id="18X-II-mx5"/>
-                        <outlet property="navBar" destination="dWe-63-iG6" id="mm3-GF-mRQ"/>
+                        <outlet property="addButton" destination="MxH-xi-plG" id="ymv-lL-2B2"/>
+                        <outlet property="navBar" destination="dWe-63-iG6" id="yvH-A0-QyE"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Sqc-HZ-HZi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1401" y="314"/>
         </scene>
-        <!--Item-->
+        <!--Assignments-->
         <scene sceneID="Mi5-vq-Mn9">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vM5-Nz-s4h" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="Ppv-0V-AjL"/>
+                    <tabBarItem key="tabBarItem" title="Assignments" image="first" id="Ppv-0V-AjL"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="GvH-48-gqw">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -277,11 +280,11 @@
             </objects>
             <point key="canvasLocation" x="713" y="-378"/>
         </scene>
-        <!--Item-->
+        <!--GPA Calculator-->
         <scene sceneID="qn4-1w-8xZ">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="XLc-4U-Qhh" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="TcE-N3-eee"/>
+                    <tabBarItem key="tabBarItem" title="GPA Calculator" image="second" id="TcE-N3-eee"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="ObQ-J3-1GN">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -315,8 +318,12 @@
             <point key="canvasLocation" x="1838" y="1073"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="first" width="30" height="30"/>
+        <image name="second" width="40" height="40"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="WoH-0p-UeD"/>
-        <segue reference="u9r-P2-fMX"/>
+        <segue reference="N2z-Mn-vub"/>
     </inferredMetricsTieBreakers>
 </document>
