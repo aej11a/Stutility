@@ -21,6 +21,7 @@
 		BEB870941CC8840D003D9F04 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = BEB870931CC8840D003D9F04 /* Assets.xcassets */; };
 		BEB870971CC8840D003D9F04 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = BEB870951CC8840D003D9F04 /* LaunchScreen.storyboard */; };
 		BEB870A21CC8840D003D9F04 /* StudentSistantTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEB870A11CC8840D003D9F04 /* StudentSistantTests.swift */; };
+		BEE83E431D147FC600FFEE4A /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEE83E421D147FC600FFEE4A /* SettingsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		BEB8709D1CC8840D003D9F04 /* StudentSistantTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = StudentSistantTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		BEB870A11CC8840D003D9F04 /* StudentSistantTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentSistantTests.swift; sourceTree = "<group>"; };
 		BEB870A31CC8840D003D9F04 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		BEE83E421D147FC600FFEE4A /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +106,7 @@
 				BE7AC4E21D0F295600D55176 /* HWListCell.swift */,
 				BEB8708A1CC8840D003D9F04 /* AppDelegate.swift */,
 				BEB870931CC8840D003D9F04 /* Assets.xcassets */,
+				BEE83E421D147FC600FFEE4A /* SettingsViewController.swift */,
 				BEB870951CC8840D003D9F04 /* LaunchScreen.storyboard */,
 				BEB870981CC8840D003D9F04 /* Info.plist */,
 				BE7AC4EF1D0F345D00D55176 /* Main.storyboard */,
@@ -224,6 +227,7 @@
 			files = (
 				BE7AC4EA1D0F295600D55176 /* HWListCell.swift in Sources */,
 				BE7AC4E41D0F295600D55176 /* GPATableViewController.swift in Sources */,
+				BEE83E431D147FC600FFEE4A /* SettingsViewController.swift in Sources */,
 				BE7AC4E81D0F295600D55176 /* GradeViewController.swift in Sources */,
 				BE7AC4E91D0F295600D55176 /* HWList.swift in Sources */,
 				BE7AC4E51D0F295600D55176 /* GPAViewController.swift in Sources */,

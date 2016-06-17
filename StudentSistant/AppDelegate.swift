@@ -5,7 +5,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Sets up nav bar colors
         UINavigationBar.appearance().barTintColor = UIColor(red: 41.0/255.0, green: 112.0/255.0, blue: 0.0/255.0, alpha: 1.0)
@@ -15,12 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Sets up tab bar colors
         UITabBar.appearance().barTintColor = UIColor(red: 41.0/255.0, green: 112.0/255.0, blue: 0.0/255.0, alpha: 1.0)
         UITabBar.appearance().tintColor = UIColor.whiteColor()
-        
-        /*
-         // Sets up selector colors
-         UISegmentedControl.appearance().backgroundColor = UIColor.whiteColor()
-         UISegmentedControl.appearance().tintColor = UIColor(red: 41.0/255.0, green: 112.0/255.0, blue: 0.0/255.0, alpha: 1.0)
-         */
         
         // Sets status bar to white color, also requires UIViewControllerBasedStatusBarAppearance in info.plist be false
         UIApplication.sharedApplication().statusBarStyle = UIStatusBarStyle.LightContent
@@ -48,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func applicationWillTerminate(application: UIApplication) {
-        // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+        
     }
     
     
