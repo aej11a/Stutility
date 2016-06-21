@@ -8,16 +8,50 @@
 
 import UIKit
 
-class SettingsViewController: UITableViewController {
-
+class SettingsViewController: UITableViewController{
+    
+    //MARK: Outlets
+    
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var weekendSwitch: UISwitch!
+    @IBOutlet weak var startLabel: UILabel!
+    @IBOutlet weak var endLabel: UILabel!
+    @IBOutlet weak var startDate: UILabel!
+    var sEdit = false
+    var eEdit = false
+    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+    static let weekendURL = DocumentsDirectory.URLByAppendingPathComponent("weekend")
+    static let datesURL = DocumentsDirectory.URLByAppendingPathComponent("dates")
+    var c = NSDateComponents()
+    var dates = [NSDate]()
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        datePicker.hidden = true
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "M/dd/YY"
+        
+        if let prevDates = NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsViewController.datesURL.path!) as? [NSDate] {
+            dates = prevDates
+            startLabel.text = dateFormatter.stringFromDate(dates[0])
+            endLabel.text = dateFormatter.stringFromDate(dates[1])
+        }else{
+            dates.append(NSDate())
+            c.year = 2016
+            c.day = 24
+            c.month = 6
+            dates.append((NSCalendar(identifier: NSCalendarIdentifierGregorian)?.dateFromComponents(c))!)
+            startLabel.text = dateFormatter.stringFromDate(NSDate())
+            endLabel.text = dateFormatter.stringFromDate((NSCalendar(identifier: NSCalendarIdentifierGregorian)?.dateFromComponents(c))!)
+        }
+        
+        if let on = NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsViewController.weekendURL.path!) as? Bool {
+            weekendSwitch.on = on
+        }
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -27,69 +61,81 @@ class SettingsViewController: UITableViewController {
 
     // MARK: - Table view data source
     
-    //Set one column of cells
+    //Set two sections of cells
     override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
+        return 2
     }
 
-    //Set 3 rows
+    //Set # rows based on which section
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        switch section{
+        case 0: return 2
+        case 1: return 1
+        default: return 0
+        }
     }
-
-    /*
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("reuseIdentifier", forIndexPath: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        if indexPath.section == 0 {
+            switch(indexPath.row)
+            {
+            case 0:
+                if sEdit {
+                    sEdit = false
+                    datePicker.hidden = true
+                    saveDates()
+                }else if !sEdit {
+                    sEdit = true
+                    eEdit = false
+                    datePicker.hidden = false
+                    datePicker.setDate(dates[0], animated: true)
+                }
+            case 1:
+                if eEdit {
+                    eEdit = false
+                    datePicker.hidden = true
+                    saveDates()
+                }else if !eEdit {
+                    eEdit = true
+                    sEdit = false
+                    datePicker.hidden = false
+                    datePicker.setDate(dates[1], animated: true)
+                }
+            case 2:
+                break;
+            default:
+                break;
+            }
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    //MARK: Picker View
+    
+    @IBAction func dateChanged(sender: UIDatePicker) {
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "M/dd/YY"
+        let convertedDate = dateFormatter.stringFromDate(datePicker.date)
+        
+        if sEdit {
+            startLabel.text = convertedDate
+            dates[0] = datePicker.date
+        }else if eEdit {
+            endLabel.text = convertedDate
+            dates[1] = datePicker.date
+        }
+        
+        saveDates()
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    //MARK: NSCoding
+    
+    func saveDates() {
+        NSKeyedArchiver.archiveRootObject(dates, toFile: SettingsViewController.datesURL.path!)
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    @IBAction func weekendSwitch(sender: UISwitch) {
+        NSKeyedArchiver.archiveRootObject(weekendSwitch.on, toFile: SettingsViewController.weekendURL.path!)
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
