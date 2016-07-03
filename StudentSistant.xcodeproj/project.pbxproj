@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		BE7AC4E31D0F295600D55176 /* DailyHWViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DB1D0F295600D55176 /* DailyHWViewController.swift */; };
 		BE7AC4E41D0F295600D55176 /* GPATableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DC1D0F295600D55176 /* GPATableViewController.swift */; };
-		BE7AC4E51D0F295600D55176 /* GPAViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DD1D0F295600D55176 /* GPAViewController.swift */; };
 		BE7AC4E61D0F295600D55176 /* Grade.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DE1D0F295600D55176 /* Grade.swift */; };
 		BE7AC4E71D0F295600D55176 /* GradeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4DF1D0F295600D55176 /* GradeTableViewCell.swift */; };
 		BE7AC4E81D0F295600D55176 /* GradeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE7AC4E01D0F295600D55176 /* GradeViewController.swift */; };
@@ -37,7 +36,6 @@
 /* Begin PBXFileReference section */
 		BE7AC4DB1D0F295600D55176 /* DailyHWViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyHWViewController.swift; sourceTree = "<group>"; };
 		BE7AC4DC1D0F295600D55176 /* GPATableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPATableViewController.swift; sourceTree = "<group>"; };
-		BE7AC4DD1D0F295600D55176 /* GPAViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GPAViewController.swift; sourceTree = "<group>"; };
 		BE7AC4DE1D0F295600D55176 /* Grade.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Grade.swift; sourceTree = "<group>"; };
 		BE7AC4DF1D0F295600D55176 /* GradeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeTableViewCell.swift; sourceTree = "<group>"; };
 		BE7AC4E01D0F295600D55176 /* GradeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GradeViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +96,6 @@
 				BE7AC4EB1D0F295F00D55176 /* Assignment.swift */,
 				BE7AC4DB1D0F295600D55176 /* DailyHWViewController.swift */,
 				BE7AC4DC1D0F295600D55176 /* GPATableViewController.swift */,
-				BE7AC4DD1D0F295600D55176 /* GPAViewController.swift */,
 				BE7AC4DE1D0F295600D55176 /* Grade.swift */,
 				BE7AC4DF1D0F295600D55176 /* GradeTableViewCell.swift */,
 				BE7AC4E01D0F295600D55176 /* GradeViewController.swift */,
@@ -230,7 +227,6 @@
 				BEE83E431D147FC600FFEE4A /* SettingsViewController.swift in Sources */,
 				BE7AC4E81D0F295600D55176 /* GradeViewController.swift in Sources */,
 				BE7AC4E91D0F295600D55176 /* HWList.swift in Sources */,
-				BE7AC4E51D0F295600D55176 /* GPAViewController.swift in Sources */,
 				BEB8708B1CC8840D003D9F04 /* AppDelegate.swift in Sources */,
 				BE7AC4E61D0F295600D55176 /* Grade.swift in Sources */,
 				BE7AC4E31D0F295600D55176 /* DailyHWViewController.swift in Sources */,
