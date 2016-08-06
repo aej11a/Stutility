@@ -17,7 +17,7 @@ class GradeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var done: UIBarButtonItem!
     var grade: Grade?
     
-    var grades = [["Level...", "Standard", "Honors", "AP"],["Grade...", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"]]
+    var grades = [["Level...", "Standard", "Honors", "AP/IB"],["Grade...", "A", "A-", "B+", "B", "B-", "C+", "C", "C-", "D+", "D", "D-", "F"]]
     var letter = 0
     var level = 0
 
@@ -36,7 +36,7 @@ class GradeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         checkValidGrade()
     }
     
-    func textFieldShouldReturn(textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         // Hide the keyboard.
         textField.resignFirstResponder()
         return true
@@ -44,8 +44,8 @@ class GradeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
 
     func checkValidGrade() {
         if grades[0][level] == "Level..." || grades[1][letter] == "Grade..."
-        {done.enabled = false}
-        else {done.enabled = true}
+        {done.isEnabled = false}
+        else {done.isEnabled = true}
     }
     
     override func didReceiveMemoryWarning() {
@@ -53,7 +53,7 @@ class GradeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         // Dispose of any resources that can be recreated.
     }
     
-    func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int){
         if component == 0 {
             level = row
         }else if component == 1 {
@@ -62,22 +62,22 @@ class GradeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         checkValidGrade()
     }
     
-    func numberOfComponentsInPickerView(pickerView: UIPickerView) -> Int {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 2
     }
     
     //Set # of rows in pickerView = to # elements in array
-    func pickerView(pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         return grades[component].count
     }
     
-    func pickerView(pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         return "\(grades[component][row])"
     }
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
         if done === sender{
             let course = textField.text ?? ""
             // Set the grade to be passed to the table
@@ -85,17 +85,17 @@ class GradeViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         }
     }
     
-    @IBAction func cancel(sender: UIBarButtonItem) {
+    @IBAction func cancel(_ sender: UIBarButtonItem) {
         // Depending on style of presentation (modal or push presentation), this view controller needs to be dismissed in two different ways.
         let isPresentingInAddGradeMode = presentingViewController is UINavigationController
         
         if isPresentingInAddGradeMode {
-            dismissViewControllerAnimated(true, completion: nil)
+            dismiss(animated: true, completion: nil)
         }
         else {
-            navigationController!.popViewControllerAnimated(true)
+            navigationController!.popViewController(animated: true)
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
 }

@@ -18,8 +18,8 @@ class Grade: NSObject, NSCoding {
     
     // MARK: Archiving Paths
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("grades")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("grades")
 
     init?(course: String?, letter: Int, level: Int){
         self.course = course
@@ -37,18 +37,18 @@ class Grade: NSObject, NSCoding {
 
     //MARK: NSCoding
 
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
         //Encodes each of the properties with the keys defined in struct PropertyKey
-        aCoder.encodeObject(course, forKey: PropertyKey.courseKey)
-        aCoder.encodeInteger(letter, forKey: PropertyKey.letterKey)
-        aCoder.encodeInteger(level, forKey: PropertyKey.levelKey)
+        aCoder.encode(course, forKey: PropertyKey.courseKey)
+        aCoder.encode(letter, forKey: PropertyKey.letterKey)
+        aCoder.encode(level, forKey: PropertyKey.levelKey)
     }
 
     required convenience init?(coder aDecoder: NSCoder) { //'required' means subclasses must implement, 'convenience' means it is a secondary constructor
         //Decodes each property and calls priamry constructor
-        let course = aDecoder.decodeObjectForKey(PropertyKey.courseKey) as? String
-        let letter = aDecoder.decodeIntegerForKey(PropertyKey.letterKey)
-        let level = aDecoder.decodeIntegerForKey(PropertyKey.levelKey)
+        let course = aDecoder.decodeObject(forKey: PropertyKey.courseKey) as? String
+        let letter = aDecoder.decodeInteger(forKey: PropertyKey.letterKey)
+        let level = aDecoder.decodeInteger(forKey: PropertyKey.levelKey)
 
         //Call designated (primary) initializer
         self.init(course: course, letter: letter, level: level)

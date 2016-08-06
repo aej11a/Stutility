@@ -8,10 +8,10 @@
 
 import UIKit
 
-func <= (lhs: NSDate, rhs: NSDate) -> Bool {
+func <= (lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 <= rhs.timeIntervalSince1970
 }
-func >= (lhs: NSDate, rhs: NSDate) -> Bool {
+func >= (lhs: Date, rhs: Date) -> Bool {
     return lhs.timeIntervalSince1970 >= rhs.timeIntervalSince1970
 }
 
@@ -20,29 +20,36 @@ class HWList: UITableViewController {
     @IBOutlet weak var navBar: UINavigationItem!
     var assignments = [Assignment]()
     
-    override func viewWillAppear(animated: Bool) {
-        let currentDate = NSDate()
-        let dateFormatter = NSDateFormatter()
+    override func viewWillAppear(_ animated: Bool) {
+        let currentDate = Date()
+        let dateFormatter = DateFormatter()
         
-        let dayOfTheWeek = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!.components(.Weekday, fromDate: NSDate()).weekday
+        let dayOfTheWeek = Calendar(identifier: Calendar.Identifier.gregorian).component(.weekday, from: Date())
         print(dayOfTheWeek)
         
         dateFormatter.dateFormat = "M/dd/YY"
-        let convertedCurrentDate = dateFormatter.stringFromDate(currentDate)
+        let convertedCurrentDate = dateFormatter.string(from: currentDate)
         print(convertedCurrentDate)
         
-        if let dates = NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsViewController.datesURL.path!) as? [NSDate] {
+        //Adds an assignment based on date comparisons
+        if let dates = NSKeyedUnarchiver.unarchiveObject(withFile: SettingsViewController.datesURL.path) as? [Date] {
             if currentDate >= dates[0] && currentDate <= dates[1] {
-                if let weekendHW = NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsViewController.weekendURL.path!) as? Bool {
+                if let weekendHW = NSKeyedUnarchiver.unarchiveObject(withFile: SettingsViewController.weekendURL.path) as? Bool {
                     if(weekendHW || (!weekendHW && dayOfTheWeek != 1 && dayOfTheWeek != 7)){
                         if assignments.count > 0 && assignments[0].date != convertedCurrentDate {
-                            assignments.insert(Assignment(hw: assignments[0].hw, date: convertedCurrentDate)!, atIndex: 0)
+                            assignments.insert(Assignment(hw: assignments[0].hw, date: convertedCurrentDate)!, at: 0)
                         }else if assignments.count == 0 {
                             assignments.append(Assignment(hw: "", date: convertedCurrentDate)!)
                         }
                     }
                 }
             }
+        }
+        
+        //adds assignment on first launch of app
+        if assignments.count == 0 {
+            assignments.append(Assignment(hw: "", date: convertedCurrentDate)!)
+            saveHW()
         }
 
     }
@@ -53,92 +60,66 @@ class HWList: UITableViewController {
         if let savedHW = loadHW() {
             assignments += savedHW
         }
-        
-        /*
-        let currentDate = NSDate()
-        let dateFormatter = NSDateFormatter()
-        
-        let dayOfTheWeek = NSCalendar(calendarIdentifier: NSCalendarIdentifierGregorian)!.components(.Weekday, fromDate: NSDate()).weekday
-        print(dayOfTheWeek)
-        
-        dateFormatter.dateFormat = "M/dd/YY"
-        let convertedCurrentDate = dateFormatter.stringFromDate(currentDate)
-        print(convertedCurrentDate)
-        
-        if let dates = NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsViewController.datesURL.path!) as? [NSDate] {
-            if currentDate >= dates[0] && currentDate <= dates[1] {
-                if let weekendHW = NSKeyedUnarchiver.unarchiveObjectWithFile(SettingsViewController.weekendURL.path!) as? Bool {
-                    if(weekendHW || (!weekendHW && dayOfTheWeek != 1 && dayOfTheWeek != 7)){
-                        if assignments.count > 0 && assignments[0].date != convertedCurrentDate {
-                            assignments.insert(Assignment(hw: assignments[0].hw, date: convertedCurrentDate)!, atIndex: 0)
-                        }else if assignments.count == 0 {
-                            assignments.append(Assignment(hw: "", date: convertedCurrentDate)!)
-                        }
-                    }
-                }
-            }
-        }
-        */
-        navBar.rightBarButtonItem = editButtonItem()
+        navBar.rightBarButtonItem = editButtonItem
     }
     
     // Allows editing of the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            assignments.removeAtIndex(indexPath.row)
+            assignments.remove(at: (indexPath as NSIndexPath).row)
             saveHW()
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
     }
     
     //Set one column of cells
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return assignments.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "HWListCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! HWListCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! HWListCell
         
         // Fetches the appropriate grade for the data source layout.
-        let assignment = assignments[indexPath.row]
+        let assignment = assignments[(indexPath as NSIndexPath).row]
         
         cell.title.text = assignment.date! + ""
         
         return cell
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        editing = false
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+        isEditing = false
         if segue.identifier == "ShowAssignment" {
-            let HWDetailViewController = segue.destinationViewController as! DailyHWViewController
+            let HWDetailViewController = segue.destination as! DailyHWViewController
             
             // Get the cell that generated this segue.
             if let selectedGradeCell = sender as? HWListCell {
-                let indexPath = tableView.indexPathForCell(selectedGradeCell)!
-                let selectedAssignment = assignments[indexPath.row]
+                let indexPath = tableView.indexPath(for: selectedGradeCell)!
+                let selectedAssignment = assignments[(indexPath as NSIndexPath).row]
                 HWDetailViewController.assignment = selectedAssignment
             }
         }
     }
     
-    @IBAction func unwindToHWList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.sourceViewController as? DailyHWViewController, assignment = sourceViewController.assignment {
+    @IBAction func unwindToHWList(_ sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? DailyHWViewController, let assignment = sourceViewController.assignment {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing assignment.
-                assignments[selectedIndexPath.row] = assignment
-                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+                assignments[(selectedIndexPath as NSIndexPath).row] = assignment
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }else{
                 // Add a new assignment.
-                let newIndexPath = NSIndexPath(forRow: assignments.count, inSection: 0)
+                let newIndexPath = IndexPath(row: assignments.count, section: 0)
                 assignments.append(assignment)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                tableView.insertRows(at: [newIndexPath], with: .bottom)
             }
         }
         saveHW()
@@ -150,7 +131,7 @@ class HWList: UITableViewController {
     //MARK: NSCoding
     
     func saveHW() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(assignments, toFile: Assignment.ArchiveURL.path!) //saves array grades to file defined in Assignment class
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(assignments, toFile: Assignment.ArchiveURL.path) //saves array grades to file defined in Assignment class
         
         if !isSuccessfulSave { //Diagnostic
             print("Save failed")
@@ -158,7 +139,7 @@ class HWList: UITableViewController {
     }
     
     func loadHW() -> [Assignment]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Assignment.ArchiveURL.path!) as? [Assignment] //gets array grades from file where saved, defined in Assignment class
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Assignment.ArchiveURL.path) as? [Assignment] //gets array grades from file where saved, defined in Assignment class
         
     }
     

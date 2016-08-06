@@ -20,7 +20,7 @@ class GPATableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         navBar.leftBarButtonItem = addButton
-        navBar.rightBarButtonItem = editButtonItem()
+        navBar.rightBarButtonItem = editButtonItem
         
         if let savedGrades = loadGrades() {
             grades += savedGrades
@@ -29,49 +29,49 @@ class GPATableViewController: UITableViewController {
         setNavBarTitle()
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        editing = false
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+        isEditing = false
         if segue.identifier == "ShowDetail" {
-            let gradeDetailViewController = segue.destinationViewController as! GradeViewController
+            let gradeDetailViewController = segue.destination as! GradeViewController
             
             // Get the cell that generated this segue.
             if let selectedGradeCell = sender as? GradeTableViewCell {
-                let indexPath = tableView.indexPathForCell(selectedGradeCell)!
-                let selectedGrade = grades[indexPath.row]
+                let indexPath = tableView.indexPath(for: selectedGradeCell)!
+                let selectedGrade = grades[(indexPath as NSIndexPath).row]
                 gradeDetailViewController.grade = selectedGrade
             }
         }
     }
     
     //Set one column of cells
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
     // Allows editing of the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
             // Delete the row from the data source
-            grades.removeAtIndex(indexPath.row)
+            grades.remove(at: (indexPath as NSIndexPath).row)
             saveGrades()
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+            tableView.deleteRows(at: [indexPath], with: .fade)
         }
         setNavBarTitle() //Intuitively calculates GPA or sets default title when cells are deleted
     }
     
     //Set number of filled rows in the table
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return grades.count
     }
    
     //Setup each cell
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         // Table view cells are reused and should be dequeued using a cell identifier.
         let cellIdentifier = "GradeTableViewCell"
-        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath) as! GradeTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! GradeTableViewCell
         
         // Fetches the appropriate grade for the data source layout.
-        let grade = grades[indexPath.row]
+        let grade = grades[(indexPath as NSIndexPath).row]
         
         cell.courseName.text = grade.course! + ": " ?? ""
         switch grade.letter{
@@ -93,7 +93,7 @@ class GPATableViewController: UITableViewController {
         switch grade.level{
         case 1: cell.levelLabel.text = "Standard"
         case 2: cell.levelLabel.text = "Honors"
-        case 3: cell.levelLabel.text = "AP"
+        case 3: cell.levelLabel.text = "AP/IB"
         default: cell.levelLabel.text = ""
         }
         
@@ -101,17 +101,17 @@ class GPATableViewController: UITableViewController {
     }
     
     
-    @IBAction func unwindToGradeList(sender: UIStoryboardSegue) {
-        if let sourceViewController = sender.sourceViewController as? GradeViewController, grade = sourceViewController.grade {
+    @IBAction func unwindToGradeList(_ sender: UIStoryboardSegue) {
+        if let sourceViewController = sender.source as? GradeViewController, let grade = sourceViewController.grade {
             if let selectedIndexPath = tableView.indexPathForSelectedRow {
                 // Update an existing grade.
-                grades[selectedIndexPath.row] = grade
-                tableView.reloadRowsAtIndexPaths([selectedIndexPath], withRowAnimation: .None)
+                grades[(selectedIndexPath as NSIndexPath).row] = grade
+                tableView.reloadRows(at: [selectedIndexPath], with: .none)
             }else{
                 // Add a new grade.
-                let newIndexPath = NSIndexPath(forRow: grades.count, inSection: 0)
+                let newIndexPath = IndexPath(row: grades.count, section: 0)
                 grades.append(grade)
-                tableView.insertRowsAtIndexPaths([newIndexPath], withRowAnimation: .Bottom)
+                tableView.insertRows(at: [newIndexPath], with: .bottom)
             }
             setNavBarTitle() //Intuitively calculates GPA when cells are added
         }
@@ -192,7 +192,7 @@ class GPATableViewController: UITableViewController {
     //MARK: NSCoding
     
     func saveGrades() {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(grades, toFile: Grade.ArchiveURL.path!) //saves array grades to file defined in Grade class
+        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(grades, toFile: Grade.ArchiveURL.path) //saves array grades to file defined in Grade class
         
         if !isSuccessfulSave { //Diagnostic
             print("Save failed")
@@ -200,7 +200,7 @@ class GPATableViewController: UITableViewController {
     }
     
     func loadGrades() -> [Grade]? {
-        return NSKeyedUnarchiver.unarchiveObjectWithFile(Grade.ArchiveURL.path!) as? [Grade] //gets array grades from file where saved, defined in Grade class
+        return NSKeyedUnarchiver.unarchiveObject(withFile: Grade.ArchiveURL.path) as? [Grade] //gets array grades from file where saved, defined in Grade class
         
     }
     

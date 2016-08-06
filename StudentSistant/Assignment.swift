@@ -15,8 +15,8 @@ class Assignment: NSObject, NSCoding {
     var hw: String?
     var date: String?
     
-    static let DocumentsDirectory = NSFileManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
-    static let ArchiveURL = DocumentsDirectory.URLByAppendingPathComponent("assignments")
+    static let DocumentsDirectory = FileManager().urls(for: .documentDirectory, in: .userDomainMask).first!
+    static let ArchiveURL = DocumentsDirectory.appendingPathComponent("assignments")
     
     init?(hw: String?, date: String){
         self.hw = hw
@@ -29,17 +29,17 @@ class Assignment: NSObject, NSCoding {
         static let dateKey = "date"
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
+    func encode(with aCoder: NSCoder) {
      //Encodes each of the properties with the keys defined in struct PropertyKey
-     aCoder.encodeObject(hw, forKey: PropertyKey.hwKey)
-     aCoder.encodeObject(date, forKey: PropertyKey.dateKey)
+     aCoder.encode(hw, forKey: PropertyKey.hwKey)
+     aCoder.encode(date, forKey: PropertyKey.dateKey)
      }
      
     required convenience init?(coder aDecoder: NSCoder) {
         //'required' means subclasses must implement, 'convenience' means it is a secondary constructor
         //Decodes each property and calls priamry constructor
-        let date = aDecoder.decodeObjectForKey(PropertyKey.dateKey) as? String
-        let hw = aDecoder.decodeObjectForKey(PropertyKey.hwKey) as? String
+        let date = aDecoder.decodeObject(forKey: PropertyKey.dateKey) as? String
+        let hw = aDecoder.decodeObject(forKey: PropertyKey.hwKey) as? String
      
      //Call designated (primary) initializer
         self.init(hw: hw, date: date!)
